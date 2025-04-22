@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import axios from "axios"; // Import axios for making API calls
+import { Link } from "react-router-dom";  // Import Link for navigation
 
 function SubscriptionPage() {
   const [email, setEmail] = useState("");
@@ -9,23 +10,17 @@ function SubscriptionPage() {
   const [ccv, setCcv] = useState(""); // For CCV validation
 
   const handleSubscribe = async () => {
-    // Check if the CCV is valid
     if (ccv.length === 6) {
       if (email && plan) {
-        // Prepare the data to send to the backend (excluding card details)
         const subscriptionData = {
           email,
           subscriptionPlan: plan,
         };
 
         try {
-          // Send data to the backend via POST request (without card details)
           const response = await axios.post("http://localhost:5000/api/subscribe", subscriptionData);
-
-          // Show success message if subscription is successful
           alert("Subscription successful! " + response.data.message);
         } catch (error) {
-          // Handle any errors that occur during the request
           alert("There was an error with the subscription.");
           console.log(error);
         }
@@ -98,8 +93,7 @@ function SubscriptionPage() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
-
-          {/* Card details inputs */}
+          {/* Card details */}
           <input
             type="text"
             className="w-full p-3 mb-4 border border-gray-300 rounded-md"
@@ -128,6 +122,15 @@ function SubscriptionPage() {
           >
             Subscribe
           </button>
+
+          {/* Login Button */}
+          <Link to="/login">
+            <button
+              className="w-full bg-blue-500 text-white py-3 rounded-md mt-4 hover:bg-blue-600"
+            >
+              Login
+            </button>
+          </Link>
         </div>
       </div>
     </div>
