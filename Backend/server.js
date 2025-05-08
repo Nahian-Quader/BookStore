@@ -2,7 +2,9 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-const subscriptionRoutes = require('./routes/subscription'); // Subscription route file
+const subscriptionRoutes = require('./routes/subscription');
+const checkSubscriptionRoutes = require('./routes/check-subscription');
+const bookmarkRoutes = require('./routes/bookmark');
 
 const app = express();
 
@@ -19,6 +21,8 @@ mongoose.connect('mongodb://localhost:27017/subscription-db', {
 
 // Routes
 app.use('/api', subscriptionRoutes);
+app.use('/api', checkSubscriptionRoutes);
+app.use('/api/bookmarks', bookmarkRoutes); 
 
 // Start the server
 const PORT = 5000;
