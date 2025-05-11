@@ -1,13 +1,16 @@
+import React from 'react';
 import { useParams, useHistory } from 'react-router-dom';
 
 function BookReaderPage() {
   const { id } = useParams();
   const history = useHistory();
 
+  // Direct link to the images HTML version
+  const gutenbergUrl = `https://www.gutenberg.org/cache/epub/${id}/pg${id}-images.html`;
+
   return (
     <div className="container mx-auto p-4 min-h-screen">
       <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg p-6">
-        {/* Back Button */}
         <button
           onClick={() => history.goBack()}
           className="mb-6 text-pink-500 hover:text-pink-600 flex items-center"
@@ -18,37 +21,19 @@ function BookReaderPage() {
           Back to Collection
         </button>
 
-        {/* Content Card */}
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-800 mb-4">Ready to Dive In?</h1>
-          <p className="text-lg text-gray-600 mb-8">
-            You're about to read this book on Project Gutenberg. Enjoy your reading experience!
-          </p>
-
-          {/* Book Preview Card */}
-          <div className="bg-gray-50 p-8 rounded-lg border border-gray-200 mb-8">
-            <h2 className="text-2xl font-semibold mb-4">Reading Options</h2>
+          <h1 className="text-3xl font-bold mb-4">Reading Options</h1>
+          <div className="bg-gray-50 p-6 rounded-lg border border-gray-200 mb-6">
             <a
-              href={`https://www.gutenberg.org/cache/epub/${id}/pg${id}-images.html`}
+              href={gutenbergUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-3 px-8 rounded-lg transition-all duration-200 inline-block mb-4"
+              className="bg-pink-500 hover:bg-pink-600 text-white font-medium py-3 px-8 rounded-lg inline-block"
             >
-              Read HTML Version
+              Read HTML Version with Images
             </a>
-            <p className="text-sm text-gray-500 mt-4">
-              Opens in new window • Full illustrations • Mobile-friendly
-            </p>
-          </div>
-
-          {/* Additional Info */}
-          <div className="text-left bg-blue-50 p-6 rounded-lg">
-            <h3 className="text-xl font-semibold mb-3">Need Help?</h3>
-            <p className="text-gray-600 mb-2">
-              🔖 Use your browser's bookmark feature to save your progress
-            </p>
-            <p className="text-gray-600">
-              📚 Explore other formats (PDF/ePub) directly on Project Gutenberg
+            <p className="mt-4 text-sm text-gray-600">
+              Book ID: {id}
             </p>
           </div>
         </div>

@@ -6,6 +6,9 @@ import SubscriptionPage from "./components/SubscriptionPage"; // Adjusted to mat
 import LoginPage from './components/LoginPage'; // Import the Login page
 import BooksPage from './components/BooksPage';
 import BookReaderPage from './components/BookReaderPage';
+import NotFound from './components/NotFound';
+import AdminLogin from './components/AdminLogin';
+import AdminDashboard from './components/AdminDashboard.jsx';
 
 
 function App() {
@@ -16,8 +19,11 @@ function App() {
         <Route path="/" exact component={HomePage} />
         <Route path="/subscription" exact component={SubscriptionPage} />
         <Route path="/login" exact component={LoginPage} /> {/* Add route for LoginPage */}
-        <Route path="/books" exact component={BooksPage} />
+        <Route exact path="/books" component={BooksPage} />
         <Route path="/books/:id" component={BookReaderPage} />
+        <Route exact path="/admin/login" component={AdminLogin} />
+        <Route exact path="/admin/dashboard" component={AdminDashboard} />
+        <Route component={NotFound} />
       </Switch>
     </Router>
   );
